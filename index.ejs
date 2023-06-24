@@ -64,18 +64,18 @@ speakButton.addEventListener("click", function(e) {
 
 
 //code for searching through microphone
-runSpeechRecog = (e) => {
-            e.preventDefault();
+runSpeechRecog = () => {
+           
             document.getElementById("output").innerHTML = "Loading text...";
             var output = document.getElementById('output');
             var action = document.getElementById('action');
             let recognization = new webkitSpeechRecognition();
-            recognization.onstart = (e) => {
-                e.preventDefault()
+            recognization.onstart = () => {
+                
                action.innerHTML = "Listening...";
             }
-            recognization.onresult = (e) => {
-                e.preventDefault()
+            recognization.onresult = () => {
+                
                var transcript = e.results[0][0].transcript;
                output.value = transcript;
                output.classList.remove("hide")
