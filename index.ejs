@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" id="form" class="form" method="post">
+<!-- code for searching via microphone -->
+
+        <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
+            <p id="action" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
+            <button onclick="runSpeechRecog()" style="border: transparent;padding: 0 0.5rem;">
+               Speech
+            </button>
+         </div>
+         <!-- <h3 id="output" class="hide"></h3> -->
+         <input type="text" name="prompt" class="hide" id="output">
+
+
+
+       
+
+
+        <button  >Ask from GPT</button>
+        <div>
+            <h2 class="card-title text1" id="text2"><b>
+               
+                
+                <%= (!!locals.employee)?employee.data.choices[0].message.content:'' %></h2></b>
+
+
+        </div>
+        <button id="speak-button">Speak</button>
+        
+    </form>
+<script>
+    let a=document.getElementById('text2');
+    let b=a.innerText;//we will pass this variable for speak functionality
+    console.log(b);
+
+    let speakButton = document.getElementById("speak-button");
+// textArea.value="hello"
+
+// Add an event listener to the speak button
+speakButton.addEventListener("click", function(e) {
+    e.preventDefault();
+  // Get the text from the text area
+  let text = b;
+
+  // Create a new SpeechSynthesisUtterance object
+  let utterance = new SpeechSynthesisUtterance();
+
+  // Set the text and voice of the utterance
+  utterance.text = text;
+  utterance.voice = window.speechSynthesis.getVoices()[1];
+
+  // Speak the utterance
+  window.speechSynthesis.speak(utterance);
+});
+
+
+
+//code for searching through microphone
+runSpeechRecog = (e) => {
+            e.preventDefault();
+            document.getElementById("output").innerHTML = "Loading text...";
+            var output = document.getElementById('output');
+            var action = document.getElementById('action');
+            let recognization = new webkitSpeechRecognition();
+            recognization.onstart = (e) => {
+                e.preventDefault()
+               action.innerHTML = "Listening...";
+            }
+            recognization.onresult = (e) => {
+                e.preventDefault()
+               var transcript = e.results[0][0].transcript;
+               output.value = transcript;
+               output.classList.remove("hide")
+               action.innerHTML = "";
+            }
+            recognization.start();
+         }
+
+
+
+</script>
+</body>
+</html>
