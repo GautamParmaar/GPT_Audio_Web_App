@@ -10,6 +10,7 @@ const app=express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+require('dotenv').config();
 
 
 
@@ -25,7 +26,7 @@ try{
         url: 'https://chatgpt53.p.rapidapi.com/',
         headers: {
           'content-type': 'application/json',
-          'X-RapidAPI-Key': 'e38190e3edmsh89073924e45455cp174847jsn0b69402f38d8',
+          'X-RapidAPI-Key': process.env.CHATGPT_API_KEY,
           'X-RapidAPI-Host': 'chatgpt53.p.rapidapi.com'
         },
         data: {
