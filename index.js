@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 })
 app.post('/',async(req,res)=>{
     const question=req.body.prompt;
-
+try{
     const options = {
         method: 'POST',
         url: 'https://chatgpt53.p.rapidapi.com/',
@@ -32,7 +32,7 @@ app.post('/',async(req,res)=>{
           messages: [
             {
               role: 'user',
-              content: question,
+              content: question,//we are passing question of end user through this question variable
             }
           ],
           temperature: 1
@@ -43,9 +43,11 @@ app.post('/',async(req,res)=>{
       
           const response = await axios.request(options);
           console.log(response.data.choices[0].message.content);
-          return res.render(path.join(__dirname,"/index.ejs"),{employee:response})
+          return res.render(path.join(__dirname,"/index.ejs"),{employee:response})//employee is variable in which we are getting response from backend in JSON format from response variable
 
-          
+    }catch(error){
+      res.json({"error": "internal server error"})
+    }
 
       
 

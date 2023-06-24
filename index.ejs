@@ -8,19 +8,21 @@
 
 </head>
 <body>
-    <!-- code for searching via microphone -->
     <div class=" d-flex align-items:center justify-content-center"><h2>GPT Audio Web App</h2></div>
 
     <div class="speaker text-center " style="display: flex;align-items:center; justify-content: space-between;width: 13rem;">
         <p id="action" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p> </div>
         <div class="text-center">
-            <!-- <button type="button" class="btn btn-primary">Primary</button> -->
+           
+      <!-- code for searching via microphone -->
 
         <button class="btn btn-primary " onclick="runSpeechRecog()" >
            Ask Questions through Microphone
         </button>
     </div>
     
+
+    <!-- code for receiving audio to text in textarea -->
     <form action="/" id="form" class="form mx-auto  " style="text-align: center;" method="post">
 
          
@@ -32,8 +34,8 @@
             <h2 class=" text1" id="text2"><b>
                
                 
-                <%= (!!locals.employee)?employee.data.choices[0].message.content:'' %></h2></b>
-
+         <%= (!!locals.employee)?employee.data.choices[0].message.content:'' %></h2></b>
+         <!-- we are using ternary operator for rendering response of chatgpt ,if response of chatgpt is none then it will be hidden -->
 
         </div>
         <button class="btn btn-primary my-2" id="speak-button">Listen Response</button>
@@ -45,9 +47,11 @@
     console.log(b);
 
     let speakButton = document.getElementById("speak-button");
-// textArea.value="hello"
 
-// Add an event listener to the speak button
+
+
+    //code for generating audio from text
+// Added an event listener to the speak button
 speakButton.addEventListener("click", function(e) {
     e.preventDefault();
   // Get the text from the text area
@@ -66,7 +70,7 @@ speakButton.addEventListener("click", function(e) {
 
 
 
-//code for searching through microphone
+//code for generating text from audio
 runSpeechRecog = () => {
             document.getElementById("output").innerHTML = "Loading text...";
             var output = document.getElementById('output');
