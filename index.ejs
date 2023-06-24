@@ -6,15 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/" id="form" class="form" method="post">
-<!-- code for searching via microphone -->
+    <!-- code for searching via microphone -->
 
-        <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
-            <p id="action" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
-            <button onclick="runSpeechRecog()" style="border: transparent;padding: 0 0.5rem;">
-               Speech
-            </button>
-         </div>
+    <div class="speaker" style="display: flex;justify-content: space-between;width: 13rem;box-shadow: 0 0 13px #0000003d;border-radius: 5px;">
+        <p id="action" style="color: grey;font-weight: 800; padding: 0; padding-left: 2rem;"></p>
+        <button onclick="runSpeechRecog()" style="border: transparent;padding: 0 0.5rem;">
+           Speech
+        </button>
+     </div>
+    <form action="/" id="form" class="form" method="post">
+
          <!-- <h3 id="output" class="hide"></h3> -->
          <input type="text" name="prompt" class="hide" id="output">
 
